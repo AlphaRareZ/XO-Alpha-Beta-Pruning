@@ -26,17 +26,23 @@ public class TicTacToe {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
+                // if the cell is empty do the move then undo it
                 if (gameGrid[i][j] == '.') {
+                    // do
                     gameGrid[i][j] = 'X';
                     int scoreAfterThisMove = computerTurn(new Move(-1, -1), alpha, beta);
                     maxVal = max(maxVal, scoreAfterThisMove);
+                    // undo
                     gameGrid[i][j] = '.';
+                    // maximize the alpha value
                     alpha = max(alpha, maxVal);
+                    // prune remaining branches if beta became less than or equal to alpha
                     if (beta <= alpha) {
                         ++pruned;
                         break;
                     }
                 }
+
             }
         }
         return maxVal;
@@ -45,10 +51,14 @@ public class TicTacToe {
     int computerTurn(Move bestMove, int alpha, int beta) { // minimizing player -> O
         if (gameOver()) return 1;
         if (noPossibleMoves()) return 0;
+
         int minVal = Integer.MAX_VALUE;
+
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
+                // if the cell is empty do the move then undo it
                 if (gameGrid[i][j] == '.') {
+                    // do
                     gameGrid[i][j] = 'O';
                     int scoreAfterThisMove = playerTurn(alpha, beta);
                     if (scoreAfterThisMove < minVal) {
@@ -56,13 +66,17 @@ public class TicTacToe {
                         bestMove.setRow(i);
                         bestMove.setColumn(j);
                     }
+                    // undo
                     gameGrid[i][j] = '.';
+                    // minimize the beta value
                     beta = min(beta, minVal);
+                    // prune remaining branches if beta became less than or equal to alpha
                     if (beta <= alpha) {
                         ++pruned;
                         break;
                     }
                 }
+
             }
         }
         return minVal;
