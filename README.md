@@ -17,7 +17,7 @@ This repository contains a Java implementation of a TicTacToe game. The game fea
 ### How to Play
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/tictactoe-java.git](https://github.com/AlphaRareZ/XO-Alpha-Beta-Pruning.git
+   git clone https://github.com/AlphaRareZ/XO-Alpha-Beta-Pruning.git
    ```
 2. Follow the on-screen instructions to play the game. Enter your moves in the format `row column`.
 
